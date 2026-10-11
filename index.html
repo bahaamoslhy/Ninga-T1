@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta
+    content="تحميل لعبة سلاحف النينجا TMNT Mutant Melee للكمبيوتر كاملة ومضغوطة بحجم 146 ميجا برابط مباشر مع شرح طريقة ضبط الأزرار عبر tmntConfig."
+    name="description" />
+  <title>تحميل لعبة سلاحف النينجا: ميوتانت ميلي للكمبيوتر | TMNT Mutant Melee PC</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Changa:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+   TMNT MUTANT MELEE - OFFICIAL GAMING PORTAL (AUTHENTIC KONAMI UI DESIGN)
+   ========================================================================== */
+
+    :root {
+      --tmnt-primary: #10b981;
+      --tmnt-green-dark: #064e3b;
+      --tmnt-accent: #e11d48;
+      --tmnt-orange: #f97316;
+      --tmnt-blue: #0284c7;
+      --tmnt-purple: #7c3aed;
+
+      --bg-dark: #060e0c;
+      --bg-panel: #0b1a16;
+      --bg-card: #10241f;
+      --border-metal: #1e3a34;
+      --border-highlight: #2dd4bf;
+
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dark: #0f172a;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      direction: rtl;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(6, 78, 59, 0.2) 0%, transparent 70%),
+        linear-gradient(rgba(11, 26, 22, 0.92), rgba(6, 14, 12, 0.96)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='%23005a43' fill-opacity='0.18'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9L14 11.55 3 17.9z'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(11, 26, 22, 0.95);
+      border-bottom: 2px solid var(--border-metal);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .header-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-title {
+      font-family: 'Changa', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-title span {
+      color: var(--tmnt-primary);
+    }
+
+    .badge-tag {
+      background: var(--tmnt-primary);
+      color: #04100c;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--tmnt-primary);
+    }
+
+    .nav-dl-btn {
+      background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+      color: #04100c !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: 1px solid #34d399;
+      font-weight: 800 !important;
+    }
+
+    .nav-dl-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .hero-section {
+      padding: 50px 0 30px;
+    }
+
+    .hero-box {
+      background: var(--bg-panel);
+      border: 2px solid var(--border-metal);
+      border-radius: 12px;
+      padding: 35px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 35px;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    .hero-box::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      right: 20px;
+      left: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--tmnt-primary), transparent);
+    }
+
+    .game-title {
+      font-family: 'Changa', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .game-title span {
+      color: var(--tmnt-primary);
+    }
+
+    .game-summary {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+
+    .specs-ribbon {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .spec-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-metal);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .spec-item .label {
+      color: var(--text-muted);
+    }
+
+    .spec-item .val {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .server-download-box {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.12) 0%, rgba(6, 78, 59, 0.25) 100%);
+      border: 2px solid var(--tmnt-primary);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .server-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+      color: #ffffff;
+      border: 1px solid #34d399;
+      border-radius: 8px;
+      font-family: 'Changa', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+      transition: transform 0.15s, filter 0.15s;
+    }
+
+    .server-btn:hover {
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+    }
+
+    .server-btn:active {
+      transform: translateY(0);
+    }
+
+    .server-info-note {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #a7f3d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .hero-media-wrap {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--border-metal);
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-media-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      padding: 40px 0;
+    }
+
+    .sec-title-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--border-metal);
+      padding-bottom: 12px;
+      margin-bottom: 25px;
+    }
+
+    .sec-title-bar h2 {
+      font-family: 'Changa', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .sec-title-bar .pill {
+      background: var(--bg-card);
+      color: var(--tmnt-primary);
+      border: 1px solid var(--border-metal);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-metal);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid var(--border-metal);
+    }
+
+    .gallery-card .desc {
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      background: var(--bg-panel);
+    }
+
+    .chars-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .char-box {
+      background: var(--bg-panel);
+      border: 2px solid var(--border-metal);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .char-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .char-box.leo {
+      border-top: 4px solid var(--tmnt-blue);
+    }
+
+    .char-box.raph {
+      border-top: 4px solid var(--tmnt-accent);
+    }
+
+    .char-box.donnie {
+      border-top: 4px solid var(--tmnt-purple);
+    }
+
+    .char-box.mikey {
+      border-top: 4px solid var(--tmnt-orange);
+    }
+
+    .char-img-area {
+      background: #040807;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-metal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+    }
+
+    .char-img-area img {
+      max-width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .char-info {
+      padding: 14px;
+      flex: 1;
+    }
+
+    .char-info h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .char-weapon-badge {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .leo .char-weapon-badge {
+      color: #38bdf8;
+    }
+
+    .raph .char-weapon-badge {
+      color: #fb7185;
+    }
+
+    .donnie .char-weapon-badge {
+      color: #c084fc;
+    }
+
+    .mikey .char-weapon-badge {
+      color: #fb923c;
+    }
+
+    .char-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .extra-chars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .extra-char-row {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-metal);
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .extra-char-row img {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      border: 1px solid var(--border-metal);
+      background: #000;
+      object-fit: cover;
+    }
+
+    .extra-char-row .name {
+      font-weight: 800;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .extra-char-row .role {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .steps-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step-item {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-metal);
+      border-radius: 8px;
+      padding: 20px 16px;
+      position: relative;
+    }
+
+    .step-num {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background: var(--tmnt-primary);
+      color: #04100c;
+      font-weight: 900;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .step-item h4 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .step-item p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .controls-panel {
+      background: var(--bg-panel);
+      border: 2px solid var(--border-metal);
+      border-radius: 12px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .controls-tool-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-metal);
+    }
+
+    .controls-tool-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      border: 1px solid var(--border-metal);
+      background: #040807;
+      padding: 4px;
+    }
+
+    .controls-tool-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .controls-tool-title h3 {
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .controls-tool-title span {
+      color: var(--tmnt-primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .controls-table-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-metal);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 14px;
+    }
+
+    .controls-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .controls-table th {
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--tmnt-primary);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 8px 14px;
+      text-align: right;
+      border-bottom: 1px solid var(--border-metal);
+    }
+
+    .controls-table td {
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .controls-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .controls-key {
+      display: inline-block;
+      background: #030806;
+      border: 1px solid var(--border-highlight);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .controls-img-preview {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid var(--border-metal);
+      background: #000;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .controls-img-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .specs-table-wrap {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-metal);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .specs-table tr {
+      border-bottom: 1px solid var(--border-metal);
+    }
+
+    .specs-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .specs-table td {
+      padding: 14px 20px;
+      font-size: 0.92rem;
+    }
+
+    .specs-table td:first-child {
+      width: 30%;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .specs-table td:last-child {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    footer {
+      background: #030806;
+      border-top: 2px solid var(--border-metal);
+      padding: 30px 0;
+      margin-top: 50px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-box {
+        grid-template-columns: 1fr;
+      }
+
+      .controls-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .chars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .extra-chars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .specs-ribbon {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       PRELOADER (TMNT THEME)
+       ========================================================================== */
+    #tmnt-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--bg-dark);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+    }
+
+    #tmnt-preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-shuriken {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      animation: spin 1s linear infinite;
+    }
+
+    .loader-shuriken::before,
+    .loader-shuriken::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 12px;
+      height: 100%;
+      background: var(--tmnt-primary);
+      transform: translateX(-50%);
+      box-shadow: 0 0 15px var(--tmnt-primary);
+      border-radius: 3px;
+    }
+
+    .loader-shuriken::after {
+      transform: translateX(-50%) rotate(90deg);
+    }
+
+    .loader-text {
+      margin-top: 30px;
+      font-family: 'Changa', sans-serif;
+      font-size: 1.8rem;
+      color: var(--tmnt-primary);
+      letter-spacing: 1px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .loader-progress {
+      width: 250px;
+      height: 6px;
+      background: var(--border-metal);
+      margin-top: 20px;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loader-progress-bar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--tmnt-primary);
+      box-shadow: 0 0 10px var(--tmnt-primary);
+      animation: load-progress 2s ease-out forwards;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        text-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+      }
+
+      50% {
+        opacity: 0.8;
+        transform: scale(0.95);
+        text-shadow: none;
+      }
+    }
+
+    @keyframes load-progress {
+      0% {
+        width: 0%;
+      }
+
+      70% {
+        width: 80%;
+      }
+
+      100% {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========================================================================== -->
+  <!-- TMNT PRELOADER -->
+  <!-- ========================================================================== -->
+  <div id="tmnt-preloader">
+    <div class="loader-shuriken"></div>
+    <div class="loader-text">جاري التحميل...</div>
+    <div class="loader-progress">
+      <div class="loader-progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-wrap">
+      <a class="logo-area" href="#home">
+        <div class="logo-title">سلاحف <span>النينجا</span></div>
+        <span class="badge-tag">TMNT PC</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">عن اللعبة</a></li>
+          <li><a href="#screenshots">الصور</a></li>
+          <li><a href="#characters">الشخصيات</a></li>
+          <li><a href="#controls">الأزرار والتحكم</a></li>
+          <li><a href="#install">التشغيل</a></li>
+          <li>
+            <a class="nav-dl-btn"
+              href="https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip"
+              target="_blank">
+              ⬇️ تحميل اللعبة (146 MB)
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container hero-section" id="home">
+    <div class="hero-box">
+      <div class="hero-text-side">
+        <h1 class="game-title">
+          تحميل لعبة <span>سلاحف النينجا</span>: ميوتانت ميلي للكمبيوتر
+        </h1>
+        <p class="game-summary">
+          الإصدار الأصلي الكامل <strong>TMNT: Mutant Melee (2005)</strong> برابط مباشر وسريع من سيرفر التخزين السحابي.
+          نسخة محمولة مجهزة مسبقاً وتعمل مباشرة على جميع أنظمة ويندوز بدون تثبيت معقد.
+        </p>
+
+        <div class="specs-ribbon">
+          <div class="spec-item">
+            <span class="label">📦 حجم الملف:</span>
+            <span class="val">146.4 ميجابايت</span>
+          </div>
+          <div class="spec-item">
+            <span class="label">🕹️ الناشر:</span>
+            <span class="val">Konami</span>
+          </div>
+          <div class="spec-item">
+            <span class="label">📁 صيغة الملف:</span>
+            <span class="val">ZIP مضغوط</span>
+          </div>
+          <div class="spec-item">
+            <span class="label">💻 التوافق:</span>
+            <span class="val">Windows XP / 7 / 10 / 11</span>
+          </div>
+        </div>
+
+        <div class="server-download-box">
+          <a class="server-btn"
+            href="https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip"
+            target="_blank">
+            ⬇️ اضغط هنا للانتقال لصفحة التحميل (146 MB)
+          </a>
+          <div class="server-info-note">
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media-wrap">
+        <img alt="شاشة لعبة سلاحف النينجا TMNT Mutant Melee" src="tmnt_title_screen.png" />
+      </div>
+    </div>
+  </main>
+
+  <!-- In-Game Screenshots -->
+  <section class="container section" id="screenshots">
+    <div class="sec-title-bar">
+      <h2>صور حقيقية من داخل اللعبة</h2>
+      <span class="pill">4 لقطات أصلية</span>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img alt="شاشة البداية" src="tmnt_title_screen.png" />
+        <div class="desc">شاشة البداية وشعار اللعبة TMNT Mutant Melee</div>
+      </div>
+      <div class="gallery-card">
+        <img alt="قتال الدوجو" src="tmnt_gameplay_dojo.png" />
+        <div class="desc">قتال وتدريب حلبة الدوجو ضد الزعيم Hun</div>
+      </div>
+      <div class="gallery-card">
+        <img alt="شاشة اختيار الشخصيات" src="tmnt_character_select.png" />
+        <div class="desc">شاشة اختيار الشخصيات ونقاط التوكنز في اللعبة</div>
+      </div>
+      <div class="gallery-card">
+        <img alt="القائمة الرئيسية" src="tmnt_main_menu.png" />
+        <div class="desc">القائمة الرئيسية: طور القصة والمعارك الجماعية</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Characters Section -->
+  <section class="container section" id="characters">
+    <div class="sec-title-bar">
+      <h2>شخصيات اللعبة الحقيقية</h2>
+      <span class="pill">أبطال النينجا والأعداء</span>
+    </div>
+
+    <div class="chars-grid">
+      <div class="char-box leo">
+        <div class="char-img-area">
+          <img alt="ليوناردو من داخل اللعبة" src="game_art_leo.png" />
+        </div>
+        <div class="char-info">
+          <h3>ليوناردو (Leonardo)</h3>
+          <span class="char-weapon-badge">⚔️ سيفان كاتانا</span>
+          <p>القائد الحكيم المتوازن في السرعة والقوة القتالية، يمتلك ضربات متتالية دقيقة تحسم المعارك.</p>
+        </div>
+      </div>
+
+      <div class="char-box raph">
+        <div class="char-img-area">
+          <img alt="رافائيل" src="avatar_raph.png" style="width:110px;height:110px;" />
+        </div>
+        <div class="char-info">
+          <h3>رافائيل (Raphael)</h3>
+          <span class="char-weapon-badge">🗡️ خنجران ساي</span>
+          <p>المقاتل الشرس صاحب اللكمات الفتاكة والالتحامات القريبة وقوة الضرر العالية في حلبات القتال.</p>
+        </div>
+      </div>
+
+      <div class="char-box donnie">
+        <div class="char-img-area">
+          <img alt="دوناتيلو" src="avatar_donnie.png" style="width:110px;height:110px;" />
+        </div>
+        <div class="char-info">
+          <h3>دوناتيلو (Donatello)</h3>
+          <span class="char-weapon-badge">🥢 عصا البو</span>
+          <p>العبقري التكنولوجي، يتميز بمدى ضربات واسع يصد الأعداء من مسافات آمنة ويصيب عدة خصوم معاً.</p>
+        </div>
+      </div>
+
+      <div class="char-box mikey">
+        <div class="char-img-area">
+          <img alt="مايكل أنجلو" src="avatar_mikey.png" style="width:110px;height:110px;" />
+        </div>
+        <div class="char-info">
+          <h3>مايكل أنجلو (Michelangelo)</h3>
+          <span class="char-weapon-badge">🌀 نانشاكو النينجا</span>
+          <p>الأسرع حركة ورشاقة في اللعبة، أسلوب قتال استعراضي خفيف يربك الخصوم ويمنعهم من الرد.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-chars-grid">
+      <div class="extra-char-row">
+        <img alt="المعلم سبلينتر" src="avatar_splinter.png" />
+        <div>
+          <div class="name">المعلم سبلينتر (Splinter)</div>
+          <div class="role">معلم النينجتسو وسرعة البديهة</div>
+        </div>
+      </div>
+      <div class="extra-char-row">
+        <img alt="إبريل أونيل" src="avatar_april.png" />
+        <div>
+          <div class="name">إبريل أونيل (April O'Neil)</div>
+          <div class="role">الحليفة الوفية والمراوغة السريعة</div>
+        </div>
+      </div>
+      <div class="extra-char-row">
+        <img alt="هان" src="avatar_hun.png" />
+        <div>
+          <div class="name">هان (Hun)</div>
+          <div class="role">زعيم العصابة واللكمات الثقيلة</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls Settings Guide (tmntConfig) -->
+  <section class="container section" id="controls">
+    <div class="sec-title-bar">
+      <h2>طريقة ضبط وتغيير أزرار اللعبة (tmntConfig)</h2>
+      <span class="pill">إعدادات التحكم</span>
+    </div>
+
+    <div class="controls-panel">
+      <div class="controls-text-side">
+        <div class="controls-tool-header">
+          <div class="controls-tool-icon">
+            <img alt="أيقونة tmntConfig" src="tmntconfig_icon.png" />
+          </div>
+          <div class="controls-tool-title">
+            <h3>برنامج ضبط الأزرار: <strong>tmntConfig.exe</strong></h3>
+            <span>موجود داخل مجلد اللعبة بعد فك الضغط</span>
+          </div>
+        </div>
+
+        <p style="color:var(--text-muted);font-size:0.92rem;margin-bottom:12px;">
+          يمكنك تخصيص أزرار الكيبورد أو توصيل أذرع التحكم (Joystick / Controller) لما يصل إلى <strong>4 لاعبين</strong>
+          بكل سهولة:
+        </p>
+
+        <div class="controls-table-box">
+          <table class="controls-table">
+            <thead>
+              <tr>
+                <th>الحركة / الحركة القتالية</th>
+                <th>الزر الافتراضي (Player 1)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>التحرك (أعلى / أسفل / يسار / يمين)</td>
+                <td>
+                  <span class="controls-key">W</span>
+                  <span class="controls-key">S</span>
+                  <span class="controls-key">A</span>
+                  <span class="controls-key">D</span>
+                </td>
+              </tr>
+              <tr>
+                <td>ضربة عادية (Attack)</td>
+                <td><span class="controls-key">N</span></td>
+              </tr>
+              <tr>
+                <td>ضربة قوية بديلة (Alt Attack)</td>
+                <td><span class="controls-key">M</span></td>
+              </tr>
+              <tr>
+                <td>تفاعل / رمي العناصر (Action)</td>
+                <td><span class="controls-key">H</span></td>
+              </tr>
+              <tr>
+                <td>قفز (Jump)</td>
+                <td><span class="controls-key">J</span></td>
+              </tr>
+              <tr>
+                <td>الضربة الخاصة الخارقة (Special)</td>
+                <td><span class="controls-key">Space (مسافة)</span></td>
+              </tr>
+              <tr>
+                <td>الصد والدفاع (Block)</td>
+                <td><span class="controls-key">B</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="color:#a7f3d0;font-size:0.83rem;margin-top:10px;">
+          💡 <strong>نصيحة:</strong> بعد اختيار الأزرار التي تناسبك، اضغط على زر <strong>OK</strong> لحفظ الإعدادات
+          فوراً.
+        </p>
+      </div>
+
+      <div class="controls-img-preview">
+        <img alt="نافذة ضبط أزرار التحكم TMNT Control Settings" src="tmnt_control_settings.png" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs & System Requirements -->
+  <section class="container section" id="about">
+    <div class="sec-title-bar">
+      <h2>تفاصيل ومتطلبات التشغيل</h2>
+      <span class="pill">معلومات تقنية</span>
+    </div>
+
+    <div class="specs-table-wrap">
+      <table class="specs-table">
+        <tr>
+          <td>اسم اللعبة</td>
+          <td>Teenage Mutant Ninja Turtles: Mutant Melee</td>
+        </tr>
+        <tr>
+          <td>المطور والناشر</td>
+          <td>Konami (كونامي) - إصدار 2005</td>
+        </tr>
+        <tr>
+          <td>حجم الملف المضغوط</td>
+          <td><strong>146.4 ميجابايت (146 MB)</strong></td>
+        </tr>
+        <tr>
+          <td>أداة ضبط الأزرار</td>
+          <td>tmntConfig.exe (مدمجة لضبط الكيبورد والدراعات حتى 4 لاعبين)</td>
+        </tr>
+        <tr>
+          <td>نظام التشغيل المطلوب</td>
+          <td>Windows XP / Windows 7 / Windows 8 / Windows 10 / Windows 11</td>
+        </tr>
+        <tr>
+          <td>المعالج والرام</td>
+          <td>Pentium III 800MHz أو أعلى مع 256MB RAM (تعمل على أي كمبيوتر)</td>
+        </tr>
+        <tr>
+          <td>التحكم</td>
+          <td>تدعم لوحة المفاتيح وأذرع التحكم USB حتى 4 لاعبين</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- How to Run -->
+  <section class="container section" id="install">
+    <div class="sec-title-bar">
+      <h2>طريقة تشغيل اللعبة</h2>
+      <span class="pill">4 خطوات سهلة</span>
+    </div>
+
+    <div class="steps-wrapper">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h4>تحميل الملف</h4>
+        <p>اضغط على رابط السيرفر الأخضر لتحميل ملف <strong>ninjaturtles_mutant_melee.zip</strong> بحجم 146 ميجا.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h4>فك الضغط</h4>
+        <p>اضغط كليك يمين على الملف واختر "Extract Here" باستخدام WinRAR أو 7-Zip في أي مجلد بجهازك.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h4>ضبط الأزرار</h4>
+        <p>شغل أداة <strong>tmntConfig.exe</strong> لتحديد أزرار الكيبورد أو الدراعات للـ 4 لاعبين ثم اضغط OK.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <h4>تشغيل واللعب</h4>
+        <p>شغل ملف اللعبة التنفيذي TMNT.exe واستمتع فوراً بالنزالات الفردية أو الجماعية!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Direct Download Box -->
+  <section class="container section">
+    <div class="server-download-box" style="margin:0 auto;max-width:800px;padding:30px;">
+      <h3 style="font-family:'Changa',sans-serif;color:#fff;font-size:1.6rem;margin-bottom:12px;">
+        جاهز للعب؟ حمّل اللعبة الآن برابط مباشر
+      </h3>
+      <p style="color:var(--text-muted);margin-bottom:20px;font-size:0.95rem;">
+        الملف مرفوع على سيرفر Supabase CDN السريع، اضغط على الرابط بالأسفل وسيبدأ المتصفح بالتحميل فوراً.
+      </p>
+      <a class="server-btn"
+        href="https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip"
+        target="_blank">
+        ⬇️ اضغط هنا للانتقال لصفحة التحميل (146 MB)
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>تحميل لعبة سلاحف النينجا TMNT Mutant Melee للكمبيوتر | جميع الحقوق محفوظة ©</p>
+    </div>
+  </footer>
+
+  <!-- ===== كل الأكواد مدمجة - بدون ملفات خارجية ===== -->
+  <script>
+    // ===== Preloader Logic =====
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        const preloader = document.getElementById('tmnt-preloader');
+        if (preloader) {
+          preloader.classList.add('fade-out');
+          setTimeout(() => preloader.remove(), 800);
+        }
+      }, 1500); // 1.5s delay to show the nice animation
+    });
+    /**
+     * TMNT Site Content & Supabase API Client
+     * Manages database settings, storage uploads, and local caching
+     */
+    const TMNT_CONFIG = {
+      supabaseUrl: 'https://eqtruojlyrijocszgmye.supabase.co',
+      supabaseKey: 'sb_publishable_j3ulZm5oneUcBWBDskw3kQ_xbAKgpbG',
+      bucketName: 'tmnt',
+      storageKey: 'tmnt_site_content_v1'
+    };
+
+    const DEFAULT_CONTENT = {
+      hero: {
+        title: 'تحميل لعبة سلاحف النينجا: ميوتانت ميلي للكمبيوتر',
+        summary: 'الإصدار الأصلي الكامل TMNT: Mutant Melee (2005) برابط مباشر وسريع من سيرفر التخزين السحابي. نسخة محمولة مجهزة مسبقاً وتعمل مباشرة على جميع أنظمة ويندوز بدون تثبيت معقد.',
+        image: 'tmnt_title_screen.png',
+        gameZipUrl: 'https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip',
+        gameZipName: 'نينجا تيدوز.zip',
+        gameZipSize: '146.4 MB'
+      },
+      screenshots: [
+        { id: 'screen_1', title: 'شاشة البداية وشعار اللعبة TMNT Mutant Melee', image: 'tmnt_title_screen.png' },
+        { id: 'screen_2', title: 'قتال وتدريب حلبة الدوجو ضد الزعيم Hun', image: 'tmnt_gameplay_dojo.png' },
+        { id: 'screen_3', title: 'شاشة اختيار الشخصيات ونقاط التوكنز في اللعبة', image: 'tmnt_character_select.png' },
+        { id: 'screen_4', title: 'القائمة الرئيسية: طور القصة والمعارك الجماعية', image: 'tmnt_main_menu.png' }
+      ],
+      characters: [
+        { id: 'char_leo', name: 'ليوناردو (Leonardo)', weapon: '⚔️ سيفان كاتانا', desc: 'القائد الحكيم المتوازن في السرعة والقوة القتالية، يمتلك ضربات متتالية دقيقة تحسم المعارك.', image: 'game_art_leo.png' },
+        { id: 'char_raph', name: 'رافائيل (Raphael)', weapon: '🗡️ خنجران ساي', desc: 'المقاتل الشرس صاحب اللكمات الفتاكة والالتحامات القريبة وقوة الضرر العالية في حلبات القتال.', image: 'avatar_raph.png' },
+        { id: 'char_donnie', name: 'دوناتيلو (Donatello)', weapon: '🥢 عصا البو', desc: 'العبقري التكنولوجي، يتميز بمدى ضربات واسع يصد الأعداء من مسافات آمنة ويصيب عدة خصوم معاً.', image: 'avatar_donnie.png' },
+        { id: 'char_mikey', name: 'مايكل أنجلو (Michelangelo)', weapon: '🌀 نانشاكو النينجا', desc: 'الأسرع حركة ورشاقة في اللعبة، أسلوب قتال استعراضي خفيف يربك الخصوم ويمنعهم من الرد.', image: 'avatar_mikey.png' },
+        { id: 'char_splinter', name: 'المعلم سبلينتر (Splinter)', weapon: '🥋 فنون النينجتسو', desc: 'معلم النينجتسو وسرعة البديهة.', image: 'avatar_splinter.png' },
+        { id: 'char_april', name: 'إبريل أونيل (April O\'Neil)', weapon: '⚡ السرعة والمراوغة', desc: 'الحليفة الوفية والمراوغة السريعة.', image: 'avatar_april.png' },
+        { id: 'char_hun', name: 'هان (Hun)', weapon: '💥 اللكمات الثقيلة', desc: 'زعيم العصابة واللكمات الثقيلة.', image: 'avatar_hun.png' }
+      ],
+      controls: {
+        icon: 'tmntconfig_icon.png',
+        settingsImage: 'tmnt_control_settings.png'
+      }
+    };
+
+    class TmntAPI {
+      static getLocalData() {
+        try {
+          const saved = localStorage.getItem(TMNT_CONFIG.storageKey);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (parsed.hero && parsed.hero.gameZipUrl && parsed.hero.gameZipUrl.indexOf('eqtruojlyrijocszgmye.supabase.co') !== -1) {
+              parsed.hero.gameZipUrl = 'https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip';
+            }
+            return Object.assign({}, DEFAULT_CONTENT, parsed);
+          }
+        } catch (e) {
+          console.warn('LocalStorage access error', e);
+        }
+        return JSON.parse(JSON.stringify(DEFAULT_CONTENT));
+      }
+
+      static saveLocalData(data) {
+        try {
+          localStorage.setItem(TMNT_CONFIG.storageKey, JSON.stringify(data));
+          return true;
+        } catch (e) {
+          console.error('Failed to save to localStorage', e);
+          return false;
+        }
+      }
+
+      static async fetchRemoteData() {
+        try {
+          const res = await fetch(`${TMNT_CONFIG.supabaseUrl}/rest/v1/site_settings?id=eq.tmnt_config&select=*`, {
+            headers: {
+              apikey: TMNT_CONFIG.supabaseKey,
+              Authorization: `Bearer ${TMNT_CONFIG.supabaseKey}`
+            }
+          });
+          if (res.ok) {
+            const rows = await res.json();
+            if (rows && rows.length > 0 && rows[0].content) {
+              const merged = Object.assign({}, DEFAULT_CONTENT, rows[0].content);
+              this.saveLocalData(merged);
+              return merged;
+            }
+          }
+        } catch (err) {
+          console.log('Supabase DB fallback to local data', err);
+        }
+        return this.getLocalData();
+      }
+
+      static async saveRemoteData(data) {
+        this.saveLocalData(data);
+        try {
+          await fetch(`${TMNT_CONFIG.supabaseUrl}/rest/v1/site_settings`, {
+            method: 'POST',
+            headers: {
+              apikey: TMNT_CONFIG.supabaseKey,
+              Authorization: `Bearer ${TMNT_CONFIG.supabaseKey}`,
+              'Content-Type': 'application/json',
+              Prefer: 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({
+              id: 'tmnt_config',
+              content: data,
+              updated_at: new Date().toISOString()
+            })
+          });
+        } catch (err) {
+          console.warn('Remote sync error, local saved', err);
+        }
+        return true;
+      }
+
+      static uploadFile(file, fileName, onProgress) {
+        return new Promise((resolve, reject) => {
+          const url = `${TMNT_CONFIG.supabaseUrl}/storage/v1/object/${TMNT_CONFIG.bucketName}/${encodeURIComponent(fileName)}`;
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', url, true);
+          xhr.setRequestHeader('apikey', TMNT_CONFIG.supabaseKey);
+          xhr.setRequestHeader('Authorization', `Bearer ${TMNT_CONFIG.supabaseKey}`);
+          xhr.setRequestHeader('x-upsert', 'true');
+          xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable && onProgress) {
+              const percent = Math.round((e.loaded / e.total) * 100);
+              onProgress(percent, e.loaded, e.total);
+            }
+          };
+
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              const publicUrl = `${TMNT_CONFIG.supabaseUrl}/storage/v1/object/public/${TMNT_CONFIG.bucketName}/${encodeURIComponent(fileName)}`;
+              resolve({ success: true, publicUrl });
+            } else {
+              const reader = new FileReader();
+              reader.onload = () => {
+                resolve({ success: true, publicUrl: reader.result, isLocal: true });
+              };
+              reader.readAsDataURL(file);
+            }
+          };
+
+          xhr.onerror = () => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              resolve({ success: true, publicUrl: reader.result, isLocal: true });
+            };
+            reader.readAsDataURL(file);
+          };
+
+          xhr.send(file);
+        });
+      }
+    }
+
+    window.TmntAPI = TmntAPI;
+    window.DEFAULT_CONTENT = DEFAULT_CONTENT;
+
+    // ===== تحميل البيانات وتحديث الصفحة =====
+    window.addEventListener('DOMContentLoaded', async function () {
+      const data = await TmntAPI.fetchRemoteData();
+      if (data) {
+        if (data.hero && data.hero.image) {
+          const heroImg = document.querySelector('.hero-media-wrap img');
+          if (heroImg) heroImg.src = data.hero.image;
+        }
+        if (data.hero) {
+          let zipUrl = 'https://download1500.mediafire.com/qrrhv98hp7hgYjG8_gb-fJqeO_4x4ef0WgR7Q21vuPYYmdxqfiDcrXlunBCyhwRPYlAhWwQs2DsqqCpmreH6F3PRd_CjPsUZG-Hwjah-IhaFwiMZVSddrdXQFT7s4REPz8pWm6c2i8IodjXNms3mf-PVm9wRlRtCq8US1rLM35gA/4v9zq22krgx07l7/%D9%86%D9%8A%D9%86%D8%AC%D8%A7+%D8%AA%D9%8A%D8%AF%D9%88%D8%B2.zip';
+          document.querySelectorAll('.server-btn, .nav-dl-btn').forEach(function (btn) {
+            btn.href = zipUrl;
+            btn.setAttribute('target', '_blank');
+            btn.removeAttribute('download');
+          });
+        }
+
+        if (data.screenshots) {
+          const galleryImgs = document.querySelectorAll('.gallery-card img');
+          data.screenshots.forEach(function (s, idx) {
+            if (galleryImgs[idx] && s.image) galleryImgs[idx].src = s.image;
+          });
+        }
+
+        if (data.characters) {
+          const charBoxes = document.querySelectorAll('.char-box .char-img-area img');
+          const extraImgs = document.querySelectorAll('.extra-char-row img');
+          for (let i = 0; i < 4; i++) {
+            if (charBoxes[i] && data.characters[i] && data.characters[i].image) {
+              charBoxes[i].src = data.characters[i].image;
+            }
+          }
+          for (let j = 4; j < data.characters.length; j++) {
+            const extraIdx = j - 4;
+            if (extraImgs[extraIdx] && data.characters[j] && data.characters[j].image) {
+              extraImgs[extraIdx].src = data.characters[j].image;
+            }
+          }
+        }
+
+        if (data.controls) {
+          if (data.controls.icon) {
+            const iconImg = document.querySelector('.controls-tool-icon img');
+            if (iconImg) iconImg.src = data.controls.icon;
+          }
+          if (data.controls.settingsImage) {
+            const settingsImg = document.querySelector('.controls-img-preview img');
+            if (settingsImg) settingsImg.src = data.controls.settingsImage;
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

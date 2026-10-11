@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>لوحة التحكم التفاعلية | TMNT Mutant Melee Dashboard</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Changa:wght@700;800&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   TMNT MUTANT MELEE - INTERACTIVE ADMIN DASHBOARD (MATCHING SITE UI)
+   ========================================================================== */
+
+:root {
+  --tmnt-primary: #10b981;
+  --tmnt-green-dark: #064e3b;
+  --tmnt-accent: #e11d48;
+  --tmnt-orange: #f97316;
+  --tmnt-blue: #0284c7;
+  --tmnt-purple: #7c3aed;
+  
+  --bg-dark: #060e0c;
+  --bg-panel: #0b1a16;
+  --bg-card: #10241f;
+  --border-metal: #1e3a34;
+  --border-highlight: #2dd4bf;
+  
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dark: #0f172a;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.6;
+  direction: rtl;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 50% 100%, rgba(6, 78, 59, 0.2) 0%, transparent 70%),
+    linear-gradient(rgba(11, 26, 22, 0.92), rgba(6, 14, 12, 0.96)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill='%23005a43' fill-opacity='0.18'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l11 6.35 11-6.35V17.9L14 11.55 3 17.9z'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  overflow-x: hidden;
+  padding-top: 50px;
+}
+
+/* Top Admin Notification Bar */
+.admin-top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 50px;
+  background: linear-gradient(90deg, #064e3b, #047857);
+  border-bottom: 2px solid var(--tmnt-primary);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.admin-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-badge {
+  background: #04100c;
+  color: var(--tmnt-primary);
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.btn-preview-link {
+  background: #fff;
+  color: #04100c;
+  text-decoration: none;
+  padding: 4px 14px;
+  border-radius: 4px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-preview-link:hover {
+  background: #e2e8f0;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  background: rgba(11, 26, 22, 0.95);
+  border-bottom: 2px solid var(--border-metal);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 50px;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-title {
+  font-family: 'Changa', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.logo-title span {
+  color: var(--tmnt-primary);
+}
+
+.badge-tag {
+  background: var(--tmnt-primary);
+  color: #04100c;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+}
+
+nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+nav a:hover {
+  color: var(--tmnt-primary);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 40px 0 20px;
+}
+
+.hero-box {
+  background: var(--bg-panel);
+  border: 2px solid var(--border-metal);
+  border-radius: 12px;
+  padding: 35px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 35px;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.hero-box::before {
+  content: '';
+  position: absolute;
+  top: -2px; right: 20px; left: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--tmnt-primary), transparent);
+}
+
+.game-title {
+  font-family: 'Changa', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.game-title span {
+  color: var(--tmnt-primary);
+}
+
+.game-summary {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+  line-height: 1.7;
+}
+
+.specs-ribbon {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.spec-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-metal);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.spec-item .label { color: var(--text-muted); }
+.spec-item .val { color: #fff; font-weight: 700; }
+
+/* Admin Upload Trigger Slot */
+.upload-slot {
+  position: relative;
+  cursor: pointer;
+  border: 2px dashed var(--border-highlight);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.upload-slot:hover {
+  border-color: var(--tmnt-primary);
+  transform: scale(1.01);
+}
+
+.upload-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.upload-slot:hover img {
+  opacity: 0.4;
+}
+
+.upload-btn-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.upload-plus-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--tmnt-primary);
+  color: #04100c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+}
+
+/* Game Link Input Box (Replaces upload) */
+.game-link-box {
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.10) 0%, rgba(6, 78, 59, 0.22) 100%);
+  border: 2px solid var(--tmnt-primary);
+  border-radius: 10px;
+  padding: 22px;
+  margin-top: 15px;
+}
+
+.game-link-box h4 {
+  font-family: 'Changa', sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.link-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.link-input-row label {
+  min-width: 90px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.link-input-row input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--border-metal);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+  direction: ltr;
+  text-align: left;
+}
+
+.link-input-row input:focus {
+  border-color: var(--tmnt-primary);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.link-input-row input::placeholder {
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.link-input-row-rtl input {
+  direction: rtl;
+  text-align: right;
+}
+
+.save-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+  color: #ffffff;
+  border: 1px solid #34d399;
+  border-radius: 8px;
+  font-family: 'Changa', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.save-link-btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.save-link-btn:active {
+  transform: translateY(0);
+}
+
+.link-status-text {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #a7f3d0;
+  font-weight: 700;
+  min-height: 1.3em;
+}
+
+/* Upload progress bar for images */
+.progress-container {
+  display: none;
+  margin-top: 14px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid var(--border-metal);
+  border-radius: 6px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--tmnt-primary);
+  transition: width 0.2s;
+}
+
+.upload-status-text {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #a7f3d0;
+  font-weight: 700;
+}
+
+/* Section Header */
+.section {
+  padding: 40px 0;
+}
+
+.sec-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid var(--border-metal);
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+}
+
+.sec-title-bar h2 {
+  font-family: 'Changa', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.sec-title-bar .pill {
+  background: var(--bg-card);
+  color: var(--tmnt-primary);
+  border: 1px solid var(--border-metal);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Screenshots Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.gallery-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-metal);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-card .upload-slot {
+  height: 230px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-metal);
+}
+
+.gallery-card .desc {
+  padding: 12px 16px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  background: var(--bg-panel);
+}
+
+/* Characters Grid */
+.chars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.char-box {
+  background: var(--bg-panel);
+  border: 2px solid var(--border-metal);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.char-box.leo { border-top: 4px solid var(--tmnt-blue); }
+.char-box.raph { border-top: 4px solid var(--tmnt-accent); }
+.char-box.donnie { border-top: 4px solid var(--tmnt-purple); }
+.char-box.mikey { border-top: 4px solid var(--tmnt-orange); }
+
+.char-box .upload-slot {
+  height: 200px;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-metal);
+}
+
+.char-info {
+  padding: 14px;
+  flex: 1;
+}
+
+.char-info h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.char-weapon-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.leo .char-weapon-badge { color: #38bdf8; }
+.raph .char-weapon-badge { color: #fb7185; }
+.donnie .char-weapon-badge { color: #c084fc; }
+.mikey .char-weapon-badge { color: #fb923c; }
+
+.char-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Extra Characters */
+.extra-chars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.extra-char-row {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-metal);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.extra-char-row .upload-slot {
+  width: 58px;
+  height: 58px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.extra-char-row .upload-plus-icon {
+  width: 28px;
+  height: 28px;
+  font-size: 1.2rem;
+}
+
+.extra-char-row .name { font-weight: 800; color: #fff; font-size: 0.95rem; }
+.extra-char-row .role { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Controls Configuration */
+.controls-panel {
+  background: var(--bg-panel);
+  border: 2px solid var(--border-metal);
+  border-radius: 12px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.controls-tool-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-metal);
+}
+
+.controls-tool-header .upload-slot {
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+}
+
+.controls-tool-header .upload-plus-icon {
+  width: 26px;
+  height: 26px;
+  font-size: 1.1rem;
+}
+
+.controls-tool-title h3 {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.controls-tool-title span {
+  color: var(--tmnt-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.controls-img-preview.upload-slot {
+  height: 320px;
+}
+
+/* Image Upload Progress Overlay */
+.upload-progress-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.upload-progress-overlay.active {
+  display: flex;
+}
+
+.upload-progress-card {
+  background: var(--bg-panel);
+  border: 2px solid var(--tmnt-primary);
+  border-radius: 14px;
+  padding: 30px 40px;
+  text-align: center;
+  min-width: 350px;
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+}
+
+.upload-progress-card h3 {
+  font-family: 'Changa', sans-serif;
+  color: #fff;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.upload-progress-card .progress-container {
+  display: block;
+  margin: 0 0 10px;
+  height: 14px;
+}
+
+.upload-progress-card .upload-status-text {
+  margin: 0;
+}
+
+/* Toast Message */
+.toast-msg {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #04100c;
+  color: var(--tmnt-primary);
+  border: 2px solid var(--tmnt-primary);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  z-index: 99999;
+  box-shadow: 0 4px 25px rgba(16, 185, 129, 0.4);
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hero-box { grid-template-columns: 1fr; }
+  .controls-panel { grid-template-columns: 1fr; }
+  .chars-grid { grid-template-columns: repeat(2, 1fr); }
+  .extra-chars-grid { grid-template-columns: 1fr; }
+  .link-input-row { flex-direction: column; align-items: stretch; }
+  .link-input-row label { min-width: auto; }
+}
+
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .chars-grid { grid-template-columns: 1fr; }
+  .specs-ribbon { grid-template-columns: 1fr; }
+  nav ul { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Hidden Global File Input -->
+<input type="file" id="globalFileInput" accept="image/*" style="display:none" onchange="handleFileChosen(this.files)"/>
+
+<!-- Image Upload Progress Overlay -->
+<div class="upload-progress-overlay" id="uploadOverlay">
+  <div class="upload-progress-card">
+    <h3>📤 جاري رفع الصورة إلى السيرفر...</h3>
+    <div class="progress-container">
+      <div class="progress-bar" id="imgProgressBar"></div>
+    </div>
+    <div class="upload-status-text" id="imgStatusText">جاري الرفع...</div>
+  </div>
+</div>
+
+<!-- Admin Top Bar -->
+<div class="admin-top-bar">
+  <div>
+    🐢 <strong>لوحة تحكم وتخصيص الموقع</strong> | اضغط على علامة <strong>(+)</strong> في أي قسم لرفع صورته فوراً
+  </div>
+  <div class="admin-top-actions">
+    <span class="admin-badge">API Live Sync</span>
+    <a class="btn-preview-link" href="preview.html" target="_blank">
+      👁️ فتح المعاينة (preview.html)
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="container header-wrap">
+    <a class="logo-area" href="#">
+      <div class="logo-title">سلاحف <span>النينجا</span></div>
+      <span class="badge-tag">Admin Panel</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#screenshots">صور اللعبة</a></li>
+        <li><a href="#characters">الشخصيات</a></li>
+        <li><a href="#controls">الأزرار والتحكم</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<main class="container hero-section" id="home">
+  <div class="hero-box">
+    
+    <div class="hero-text-side">
+      <h1 class="game-title">
+        تحميل لعبة <span>سلاحف النينجا</span>: ميوتانت ميلي للكمبيوتر
+      </h1>
+      <p class="game-summary">
+        الإصدار الأصلي الكامل <strong>TMNT: Mutant Melee (2005)</strong> برابط مباشر وسريع من سيرفر التخزين السحابي. نسخة محمولة مجهزة مسبقاً وتعمل مباشرة على جميع أنظمة ويندوز بدون تثبيت معقد.
+      </p>
+
+      <div class="specs-ribbon">
+        <div class="spec-item">
+          <span class="label">📦 حجم الملف:</span>
+          <span class="val" id="dispZipSize">146.4 ميجابايت</span>
+        </div>
+        <div class="spec-item">
+          <span class="label">🕹️ الناشر:</span>
+          <span class="val">Konami</span>
+        </div>
+        <div class="spec-item">
+          <span class="label">📁 صيغة الملف:</span>
+          <span class="val">ZIP مضغوط</span>
+        </div>
+        <div class="spec-item">
+          <span class="label">💻 التوافق:</span>
+          <span class="val">Windows XP / 7 / 10 / 11</span>
+        </div>
+      </div>
+
+      <!-- Game Download Link Input (instead of upload) -->
+      <div class="game-link-box">
+        <h4>🔗 رابط تحميل اللعبة</h4>
+        <div class="link-input-group">
+          <div class="link-input-row">
+            <label>رابط التحميل:</label>
+            <input type="url" id="inputGameUrl" placeholder="https://www.mediafire.com/file/xxxxx/game.zip"/>
+          </div>
+          <div class="link-input-row link-input-row-rtl">
+            <label>اسم الملف:</label>
+            <input type="text" id="inputGameName" placeholder="نينجا تيدوز.zip"/>
+          </div>
+          <div class="link-input-row link-input-row-rtl">
+            <label>حجم الملف:</label>
+            <input type="text" id="inputGameSize" placeholder="146.4 MB"/>
+          </div>
+        </div>
+        <button class="save-link-btn" onclick="saveGameLink()">
+          💾 حفظ رابط التحميل في الداتابيز
+        </button>
+        <div class="link-status-text" id="linkStatusText"></div>
+      </div>
+    </div>
+
+    <!-- Hero Image Upload Slot -->
+    <div class="hero-media-wrap upload-slot" style="aspect-ratio:4/3;" onclick="triggerUpload('heroImage')">
+      <img id="img_hero" alt="صورة شاشة البداية" src="tmnt_title_screen.png"/>
+      <div class="upload-btn-overlay">
+        <div class="upload-plus-icon">+</div>
+        <span>تغيير صورة شاشة البداية</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- In-Game Screenshots (4 Uploadable Slots) -->
+<section class="container section" id="screenshots">
+  <div class="sec-title-bar">
+    <h2>صور حقيقية من داخل اللعبة</h2>
+    <span class="pill">اضغط (+) لتغيير أي لقطة</span>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-card">
+      <div class="upload-slot" onclick="triggerUpload('screen_1')">
+        <img id="img_screen_1" alt="لقطة 1" src="tmnt_title_screen.png"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة شاشة البداية</span>
+        </div>
+      </div>
+      <div class="desc">شاشة البداية وشعار اللعبة TMNT Mutant Melee</div>
+    </div>
+
+    <div class="gallery-card">
+      <div class="upload-slot" onclick="triggerUpload('screen_2')">
+        <img id="img_screen_2" alt="لقطة 2" src="tmnt_gameplay_dojo.png"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة حلبة الدوجو</span>
+        </div>
+      </div>
+      <div class="desc">قتال وتدريب حلبة الدوجو ضد الزعيم Hun</div>
+    </div>
+
+    <div class="gallery-card">
+      <div class="upload-slot" onclick="triggerUpload('screen_3')">
+        <img id="img_screen_3" alt="لقطة 3" src="tmnt_character_select.png"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة اختيار الشخصيات</span>
+        </div>
+      </div>
+      <div class="desc">شاشة اختيار الشخصيات ونقاط التوكنز في اللعبة</div>
+    </div>
+
+    <div class="gallery-card">
+      <div class="upload-slot" onclick="triggerUpload('screen_4')">
+        <img id="img_screen_4" alt="لقطة 4" src="tmnt_main_menu.png"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة القائمة الرئيسية</span>
+        </div>
+      </div>
+      <div class="desc">القائمة الرئيسية: طور القصة والمعارك الجماعية</div>
+    </div>
+  </div>
+</section>
+
+<!-- Characters Section (Uploadable Cards with +) -->
+<section class="container section" id="characters">
+  <div class="sec-title-bar">
+    <h2>شخصيات اللعبة الحقيقية</h2>
+    <span class="pill">اضغط (+) لرفع صورة الشخصية</span>
+  </div>
+
+  <div class="chars-grid">
+    <!-- Leonardo -->
+    <div class="char-box leo">
+      <div class="upload-slot" onclick="triggerUpload('char_leo')">
+        <img id="img_char_leo" alt="ليوناردو" src="game_art_leo.png"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة ليوناردو</span>
+        </div>
+      </div>
+      <div class="char-info">
+        <h3>ليوناردو (Leonardo)</h3>
+        <span class="char-weapon-badge">⚔️ سيفان كاتانا</span>
+        <p>القائد الحكيم المتوازن في السرعة والقوة القتالية، يمتلك ضربات متتالية دقيقة تحسم المعارك.</p>
+      </div>
+    </div>
+
+    <!-- Raphael -->
+    <div class="char-box raph">
+      <div class="upload-slot" onclick="triggerUpload('char_raph')">
+        <img id="img_char_raph" alt="رافائيل" src="avatar_raph.png" style="object-fit:contain;padding:15px;"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة رافائيل</span>
+        </div>
+      </div>
+      <div class="char-info">
+        <h3>رافائيل (Raphael)</h3>
+        <span class="char-weapon-badge">🗡️ خنجران ساي</span>
+        <p>المقاتل الشرس صاحب اللكمات الفتاكة والالتحامات القريبة وقوة الضرر العالية في حلبات القتال.</p>
+      </div>
+    </div>
+
+    <!-- Donatello -->
+    <div class="char-box donnie">
+      <div class="upload-slot" onclick="triggerUpload('char_donnie')">
+        <img id="img_char_donnie" alt="دوناتيلو" src="avatar_donnie.png" style="object-fit:contain;padding:15px;"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة دوناتيلو</span>
+        </div>
+      </div>
+      <div class="char-info">
+        <h3>دوناتيلو (Donatello)</h3>
+        <span class="char-weapon-badge">🥢 عصا البو</span>
+        <p>العبقري التكنولوجي، يتميز بمدى ضربات واسع يصد الأعداء من مسافات آمنة ويصيب عدة خصوم معاً.</p>
+      </div>
+    </div>
+
+    <!-- Michelangelo -->
+    <div class="char-box mikey">
+      <div class="upload-slot" onclick="triggerUpload('char_mikey')">
+        <img id="img_char_mikey" alt="مايكل أنجلو" src="avatar_mikey.png" style="object-fit:contain;padding:15px;"/>
+        <div class="upload-btn-overlay">
+          <div class="upload-plus-icon">+</div>
+          <span>رفع صورة مايكل أنجلو</span>
+        </div>
+      </div>
+      <div class="char-info">
+        <h3>مايكل أنجلو (Michelangelo)</h3>
+        <span class="char-weapon-badge">🌀 نانشاكو النينجا</span>
+        <p>الأسرع حركة ورشاقة في اللعبة، أسلوب قتال استعراضي خفيف يربك الخصوم ويمنعهم من الرد.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra Characters -->
+  <div class="extra-chars-grid">
+    <div class="extra-char-row">
+      <div class="upload-slot" onclick="triggerUpload('char_splinter')">
+        <img id="img_char_splinter" alt="المعلم سبلينتر" src="avatar_splinter.png"/>
+        <div class="upload-btn-overlay"><div class="upload-plus-icon">+</div></div>
+      </div>
+      <div>
+        <div class="name">المعلم سبلينتر (Splinter)</div>
+        <div class="role">معلم النينجتسو وسرعة البديهة</div>
+      </div>
+    </div>
+
+    <div class="extra-char-row">
+      <div class="upload-slot" onclick="triggerUpload('char_april')">
+        <img id="img_char_april" alt="إبريل أونيل" src="avatar_april.png"/>
+        <div class="upload-btn-overlay"><div class="upload-plus-icon">+</div></div>
+      </div>
+      <div>
+        <div class="name">إبريل أونيل (April O'Neil)</div>
+        <div class="role">الحليفة الوفية والمراوغة السريعة</div>
+      </div>
+    </div>
+
+    <div class="extra-char-row">
+      <div class="upload-slot" onclick="triggerUpload('char_hun')">
+        <img id="img_char_hun" alt="هان" src="avatar_hun.png"/>
+        <div class="upload-btn-overlay"><div class="upload-plus-icon">+</div></div>
+      </div>
+      <div>
+        <div class="name">هان (Hun)</div>
+        <div class="role">زعيم العصابة واللكمات الثقيلة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Controls Settings Guide (tmntConfig) -->
+<section class="container section" id="controls">
+  <div class="sec-title-bar">
+    <h2>طريقة ضبط وتغيير أزرار اللعبة (tmntConfig)</h2>
+    <span class="pill">اضغط (+) لرفع صورة النافذة والأيقونة</span>
+  </div>
+
+  <div class="controls-panel">
+    <div class="controls-text-side">
+      <div class="controls-tool-header">
+        <div class="upload-slot" onclick="triggerUpload('control_icon')">
+          <img id="img_control_icon" alt="أيقونة tmntConfig" src="tmntconfig_icon.png"/>
+          <div class="upload-btn-overlay"><div class="upload-plus-icon">+</div></div>
+        </div>
+        <div class="controls-tool-title">
+          <h3>برنامج ضبط الأزرار: <strong>tmntConfig.exe</strong></h3>
+          <span>موجود داخل مجلد اللعبة بعد فك الضغط</span>
+        </div>
+      </div>
+
+      <p style="color:var(--text-muted);font-size:0.92rem;margin-bottom:12px;">
+        يمكنك تخصيص أزرار الكيبورد أو توصيل أذرع التحكم (Joystick / Controller) لما يصل إلى <strong>4 لاعبين</strong> بكل سهولة.
+      </p>
+    </div>
+
+    <!-- Controls Screenshot Upload Slot -->
+    <div class="controls-img-preview upload-slot" onclick="triggerUpload('control_settings')">
+      <img id="img_control_settings" alt="نافذة ضبط أزرار التحكم" src="tmnt_control_settings.png"/>
+      <div class="upload-btn-overlay">
+        <div class="upload-plus-icon">+</div>
+        <span>رفع صورة نافذة الإعدادات tmntConfig</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="toast-msg" id="toastMsg">تم تحديث وحفظ الصورة في الـ API والداتابيز بنجاح! ✅</div>
+
+<!-- Scripts -->
+<script src="api.js"></script>
+<script>
+var currentUploadTarget = null;
+var siteData = null;
+
+window.onload = async function() {
+  siteData = await TmntAPI.fetchRemoteData();
+  renderFromData(siteData);
+};
+
+function renderFromData(data) {
+  if (!data) return;
+  
+  if (data.hero && data.hero.image) {
+    document.getElementById('img_hero').src = data.hero.image;
+  }
+
+  // Fill game link inputs from saved data
+  if (data.hero) {
+    if (data.hero.gameZipUrl) {
+      document.getElementById('inputGameUrl').value = data.hero.gameZipUrl;
+    }
+    if (data.hero.gameZipName) {
+      document.getElementById('inputGameName').value = data.hero.gameZipName;
+    }
+    if (data.hero.gameZipSize) {
+      document.getElementById('inputGameSize').value = data.hero.gameZipSize;
+      document.getElementById('dispZipSize').textContent = data.hero.gameZipSize;
+    }
+    // Show status if link already saved
+    if (data.hero.gameZipUrl) {
+      document.getElementById('linkStatusText').textContent = '✅ الرابط الحالي محفوظ ويعمل';
+    }
+  }
+
+  // Screenshots
+  if (data.screenshots) {
+    data.screenshots.forEach(function(s) {
+      var el = document.getElementById('img_' + s.id);
+      if (el && s.image) el.src = s.image;
+    });
+  }
+
+  // Characters
+  if (data.characters) {
+    data.characters.forEach(function(c) {
+      var el = document.getElementById('img_' + c.id);
+      if (el && c.image) el.src = c.image;
+    });
+  }
+
+  // Controls
+  if (data.controls) {
+    if (data.controls.icon) document.getElementById('img_control_icon').src = data.controls.icon;
+    if (data.controls.settingsImage) document.getElementById('img_control_settings').src = data.controls.settingsImage;
+  }
+}
+
+// Save Game Download Link
+async function saveGameLink() {
+  var url = document.getElementById('inputGameUrl').value.trim();
+  var name = document.getElementById('inputGameName').value.trim();
+  var size = document.getElementById('inputGameSize').value.trim();
+  var statusEl = document.getElementById('linkStatusText');
+
+  if (!url) {
+    statusEl.textContent = '⚠️ يرجى إدخال رابط التحميل أولاً!';
+    statusEl.style.color = '#fbbf24';
+    return;
+  }
+
+  statusEl.textContent = '⏳ جاري حفظ الرابط في الداتابيز...';
+  statusEl.style.color = '#a7f3d0';
+
+  siteData.hero.gameZipUrl = url;
+  if (name) siteData.hero.gameZipName = name;
+  if (size) {
+    siteData.hero.gameZipSize = size;
+    document.getElementById('dispZipSize').textContent = size;
+  }
+
+  await TmntAPI.saveRemoteData(siteData);
+
+  statusEl.textContent = '✅ تم حفظ رابط التحميل في الداتابيز بنجاح!';
+  showToast('تم حفظ رابط تحميل اللعبة في الـ API والداتابيز بنجاح! ✅');
+}
+
+function triggerUpload(targetId) {
+  currentUploadTarget = targetId;
+  var input = document.getElementById('globalFileInput');
+  input.accept = 'image/*';
+  input.value = '';
+  input.click();
+}
+
+async function handleFileChosen(files) {
+  if (!files || files.length === 0 || !currentUploadTarget) return;
+  var file = files[0];
+
+  // Show upload overlay
+  var overlay = document.getElementById('uploadOverlay');
+  var pBar = document.getElementById('imgProgressBar');
+  var status = document.getElementById('imgStatusText');
+  overlay.classList.add('active');
+  pBar.style.width = '0%';
+  status.textContent = 'جاري رفع الصورة إلى السيرفر...';
+
+  // Handle Image Upload
+  var fileName = currentUploadTarget + '_' + Date.now() + '.png';
+  try {
+    var res = await TmntAPI.uploadFile(file, fileName, function(percent) {
+      pBar.style.width = percent + '%';
+      status.textContent = 'جاري الرفع: ' + percent + '%';
+    });
+    var newUrl = res.publicUrl;
+
+    // Update siteData
+    if (currentUploadTarget === 'heroImage') {
+      siteData.hero.image = newUrl;
+      document.getElementById('img_hero').src = newUrl;
+    } else if (currentUploadTarget.startsWith('screen_')) {
+      var s = siteData.screenshots.find(function(x) { return x.id === currentUploadTarget; });
+      if (s) s.image = newUrl;
+      document.getElementById('img_' + currentUploadTarget).src = newUrl;
+    } else if (currentUploadTarget.startsWith('char_')) {
+      var c = siteData.characters.find(function(x) { return x.id === currentUploadTarget; });
+      if (c) c.image = newUrl;
+      document.getElementById('img_' + currentUploadTarget).src = newUrl;
+    } else if (currentUploadTarget === 'control_icon') {
+      siteData.controls.icon = newUrl;
+      document.getElementById('img_control_icon').src = newUrl;
+    } else if (currentUploadTarget === 'control_settings') {
+      siteData.controls.settingsImage = newUrl;
+      document.getElementById('img_control_settings').src = newUrl;
+    }
+
+    await TmntAPI.saveRemoteData(siteData);
+
+    status.textContent = '✅ تم رفع الصورة بنجاح!';
+    setTimeout(function() {
+      overlay.classList.remove('active');
+    }, 1200);
+    showToast('تم تحديث وحفظ الصورة في الـ API والداتابيز بنجاح! ✅');
+  } catch (err) {
+    status.textContent = '⚠️ حدث خطأ أثناء الرفع، تم الحفظ محلياً.';
+    setTimeout(function() {
+      overlay.classList.remove('active');
+    }, 2000);
+    console.error(err);
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toastMsg');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(function() {
+    t.style.display = 'none';
+  }, 3500);
+}
+</script>
+
+</body>
+</html>
